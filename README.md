@@ -11,13 +11,13 @@ python-bootcamp/
 |-- README.md                 # Rules, assignment map, and test instructions
 |-- PROGRESS.md               # Real issue/PR links, reviewer, tests, and hours
 |-- members/
-|   |-- AI_WFox/w1/           # Pham Khanh Tam; w2/ and w3/ also reserved
+|   |-- ai_wfox/w1/           # Pham Khanh Tam; w2/ and w3/ also reserved
 |   |-- htbaax/w1/            # Ha Tran Boi Anh
 |   |-- nhatquynh1107/w1/     # Nguyen Nhat Quynh
 |   |-- johannguyen015/w1/    # Nguyen Ba Duy
 |   |-- benalexx007/w1/       # Nguyen Dinh Hung
-|   |-- Thanhdat3010/w1/      # Truong Thanh Dat
-|   `-- philip_trkk/w1/       # Duong Trung Anh
+|   |-- thanhdat3010/w1/      # Truong Thanh Dat
+|   `-- philip_kkk/w1/        # Duong Trung Anh
 |-- shared/study_planner/     # Shared work in later weeks
 `-- tests/                   # Instructor tests and their conftest.py
 ```
@@ -27,9 +27,9 @@ actual test suite; a `.gitkeep` does not make the bootcamp testable. Replace
 the `.gitkeep` in your own week folder when adding source files. Keep other
 members' folders intact.
 
-Folder names match GitHub usernames with hyphens replaced by underscores;
-preserve their existing case. For example, `AI-WFox` uses `AI_WFox`, and
-`philip-trkk` uses `philip_trkk`.
+Folder names match GitHub usernames in lowercase with hyphens replaced by underscores.
+For example, `AI-WFox` uses `ai_wfox`, `Thanhdat3010` uses `thanhdat3010`, and
+`philip-kkk` uses `philip_kkk`.
 
 ## Development environment
 
@@ -83,13 +83,13 @@ task numbers or the roster's display order.
 
 | Algorithm number | Member | Folder | Translation |
 | --- | --- | --- | --- |
-| 1 | Pham Khanh Tam | `AI_WFox` | Binary search: return an index or -1 |
+| 1 | Pham Khanh Tam | `ai_wfox` | Binary search: return an index or -1 |
 | 2 | Ha Tran Boi Anh | `htbaax` | Insertion sort, in place |
 | 3 | Nguyen Nhat Quynh | `nhatquynh1107` | Matrix transpose |
 | 4 | Nguyen Ba Duy | `johannguyen015` | Sieve of Eratosthenes: primes up to n |
 | 5 | Nguyen Dinh Hung | `benalexx007` | Selection sort, in place |
-| 6 | Truong Thanh Dat | `Thanhdat3010` | BFS: visit order |
-| 7 | Duong Trung Anh | `philip_trkk` | DFS: visit order |
+| 6 | Truong Thanh Dat | `thanhdat3010` | BFS: visit order |
+| 7 | Duong Trung Anh | `philip_kkk` | DFS: visit order |
 
 The tutorial defines variants 1-4. The team's additions 5-7 need matching
 interfaces and cases in the instructor-supplied test harness; confirm them
@@ -101,7 +101,7 @@ After the instructor's `tests/test_w1.py` and `tests/conftest.py` are added,
 run Tam's W1 tests from the repository root:
 
 ```sh
-python -m pytest -q tests/test_w1.py --member AI_WFox --variant 1
+python -m pytest -q tests/test_w1.py --member ai_wfox --variant 1
 ```
 
 Tam uses **variant 1**, because the assigned algorithm is binary search.
@@ -112,7 +112,7 @@ and exact callable names.
 If your own folder contains additional tests, run them separately, for example:
 
 ```sh
-python -m pytest -q/members/AI_WFox/w1/test_exercises.py
+python -m pytest -q/members/ai_wfox/w1/test_exercises.py
 ```
 
 For the complete bootcamp, once the instructor suite is installed:
@@ -138,7 +138,7 @@ The CI owner must use the instructor harness's supported discovery/options.
    git switch -c py/w1-<github-username>
    ```
 
-   Tam's branch is `py/w1-AI-WFox`; their code belongs in `members/AI_WFox/w1/`.
+   Tam's branch is `py/w1-AI-WFox`; their code belongs in `members/ai_wfox/w1/`.
 
 2. Work only in your own member folder for individual exercises. Commit after
    each exercise with a meaningful message, for example
