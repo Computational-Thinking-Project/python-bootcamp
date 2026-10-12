@@ -14,7 +14,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pytest ruff
-      - run: ruff check --ignore PLW1510 .
-      - run: pytest -q
+      - run: ruff check .
+      - run: pytest -q tests/
       - name: No conflict markers
         run: "! git grep -n -E '^(<<<<<<<|>>>>>>>)'"
+        
