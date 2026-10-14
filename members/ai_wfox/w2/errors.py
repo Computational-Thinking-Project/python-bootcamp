@@ -11,8 +11,10 @@ class InfeasiblePlan(Exception):
         super().__init__(needed_h, available_h)
 
     def __str__(self) -> str:
-        return (f"Plan needs {self.needed_h:g} h, "
-                f"but only {self.available_h:g} h are available.")
+        return (
+            f"Plan needs {self.needed_h:g} h, "
+            f"but only {self.available_h:g} h are available."
+        )
 
 
 def check_feasible(tasks: list[Task], available_h: float) -> None:
