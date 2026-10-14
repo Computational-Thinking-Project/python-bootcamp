@@ -15,5 +15,5 @@ Codex helped draft `python-bootcamp/README.md`.
 
 ## 2026-10-14 - AI-WFox - Week 2 individual exercises
 
-Codex drafted the exercise implementations, complexity notes, cross-tests,
-supplementary tests, documentation, and scoped CI job, then ran verification.
+Pham Khanh Tam revised the code and tests. Codex provided initial code/test
+drafts and supported documentation, CI, and verification.

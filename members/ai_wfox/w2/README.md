@@ -31,6 +31,5 @@ For n tasks, B CSV characters, T title characters, and J output characters:
 Individual Task is separate from the team's shared contract. Team render tests
 are a separate contribution and do not replace the individual W2 cross-tests.
 
-AI use: Codex drafted the exercise implementations, complexity notes, tests,
-and documentation, then ran verification. Retained assistance must be recorded
-in the PR and AI-use log.
+AI use: Pham Khanh Tam revised the code and tests. Codex provided initial
+code/test drafts and supported documentation, CI, and verification.

@@ -1,26 +1,18 @@
-"""W2-4: cross-tests for Trung Anh's public W1 functions.
-
-The instructor suite does not cover punctuation-only input, negative top-k,
-duplicate timetable entries, or DFS cycles/disconnected components.
-"""
+"""Edge cases and input immutability for Philip's W1 functions."""
 
 from members.philip_kkk.w1 import grades, rules, text_tools, timetable, translate
 
 
 def test_summary_does_not_modify_input() -> None:
     scores = [9.0, 6.0, 8.0]
-    original = scores.copy()
     assert grades.summary(scores)["median"] == 8.0
-    assert scores == original
+    assert scores == [9.0, 6.0, 8.0]
 
 
 def test_repeated_scores() -> None:
-    assert grades.summary([4.5, 4.5, 4.5]) == {
-        "min": 4.5,
-        "max": 4.5,
-        "mean": 4.5,
-        "median": 4.5,
-    }
+    assert grades.summary([4.5] * 3) == dict.fromkeys(
+        ("min", "max", "mean", "median"), 4.5
+    )
 
 
 def test_punctuation_only_input() -> None:
@@ -48,9 +40,8 @@ def test_timetable_preserves_duplicates() -> None:
 
 def test_dfs_cycles_and_self_loops() -> None:
     graph = [[0, 2, 1], [2], [0, 3], [3]]
-    original = [neighbors.copy() for neighbors in graph]
     assert translate.dfs(graph, 0) == [0, 2, 3, 1]
-    assert graph == original
+    assert graph == [[0, 2, 1], [2], [0, 3], [3]]
 
 
 def test_dfs_stays_in_start_component() -> None:
