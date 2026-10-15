@@ -1,10 +1,13 @@
+import csv
+import json
 from datetime import date
+
 from .models import Task
-import csv, json
+
 
 def load_tasks(path) -> list[Task]:
     tasks = []
-    
+
     with open(path, "r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
         for line_num, row in enumerate(reader, start=2):
@@ -18,6 +21,7 @@ def load_tasks(path) -> list[Task]:
             tasks.append(current_task)
 
     return tasks
+
 
 def save_json(tasks, path):
     with open(path, "w", encoding="utf-8") as file:
