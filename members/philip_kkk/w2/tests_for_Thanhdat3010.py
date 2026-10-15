@@ -1,0 +1,106 @@
+from members.thanhdat3010.w1.grades import summary
+from members.thanhdat3010.w1.text_tools import top_k
+from members.thanhdat3010.w1.rules import missing
+from members.thanhdat3010.w1.translate import bfs
+from members.thanhdat3010.w1.timetable import by_day
+
+def test_grades_summary():
+    #Test 01
+    scores = [4, 4, 4]
+    expected_summary = {
+        "min": 4,
+        "max": 4,
+        "mean": 4.0,
+        "median": 4.0,
+    }
+    assert summary(scores) == expected_summary
+    
+    #Test 02
+    scores = [9, 1, 3]
+    expected_summary = {
+        "min": 1,
+        "max": 9,
+        "mean": 4.33,
+        "median": 3.0,
+    }
+    assert summary(scores) == expected_summary
+    
+def test_text_tools_top_k():
+    #Test 01
+    text = ".,!.?.,!,,?"
+    assert top_k(text, 3) == []
+    
+    #Test 02
+    text = "Apple apple banana"
+    assert top_k(text, 0) == []
+    
+    
+    #Test 03
+    expected_answers = [
+        ("apple", 2)
+    ]
+    assert top_k(text, 1) == expected_answers
+
+def test_rules_missing():
+    #Test 01
+    credits = 119
+    gpa = 2.0
+    expected_reasons = ["need 1 more credits"]
+    assert missing(credits, gpa) == expected_reasons
+
+    #Test 02
+    credits = 120
+    gpa = 1.99
+    expected_reasons = []
+    assert missing(credits, gpa) != expected_reasons
+
+def test_bfs_cycle_and_disconnected_nodes():
+    #Test 01
+    graph = {
+        "A": ["B", "C"],
+        "B": ["A", "D"],
+        "C": ["D"],
+        "D": [],
+        "X": ["Y"],
+        "Y": [],
+    }
+    
+    assert bfs(graph, "A") == ["A", "B", "C", "D"]
+    
+    #Test 02
+    graph = {
+        "A": ["A", "B", "B"],
+        "B": []
+    }
+    
+    assert bfs(graph, "A") == ["A", "B"]
+    
+def test_timetable_by_day():
+    #Test 01
+    timetable = [
+        ("Z", "Monday"),
+        ("A", "Monday"),
+        ("B", "Tuesday"),
+        ("C", "Tuesday"),
+        ("D", "Wednesday"),
+    ]
+    
+    expected_schedule = {
+        "Monday": ["A", "Z"],
+        "Tuesday": ["B", "C"],
+        "Wednesday": ["D"],
+    }
+    
+    assert by_day(timetable) == expected_schedule
+    
+    #Test 02
+    timetable = [
+        ("CS", "Mon"),
+        ("CS", "Mon")
+    ]
+    
+    expected_schedule = {
+        "Mon": ["CS", "CS"]
+    }
+    
+    assert by_day(timetable) == expected_schedule
