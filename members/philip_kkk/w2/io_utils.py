@@ -11,6 +11,9 @@ def load_tasks(path) -> list[Task]:
     with open(path, "r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
         for line_num, row in enumerate(reader, start=2):
+            if None in row:
+                raise ValueError(f"Invalid data in line {line_num}: extra fields")
+            
             try:
                 importance = int(row["importance"])
                 effort_h = float(row["effort_h"])
