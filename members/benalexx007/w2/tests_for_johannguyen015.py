@@ -6,6 +6,7 @@ Tests Duy's Sieve of Eratosthenes algorithm translation and edge cases across th
 from __future__ import annotations
 
 import pytest
+
 from members.johannguyen015.w1 import grades, rules, text_tools, timetable, translate
 
 
