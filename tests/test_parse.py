@@ -4,7 +4,6 @@ from datetime import date
 from pathlib import Path
 
 import pytest
-
 from shared.contract import Task
 from shared.study_planner.parse import parse_csv
 
