@@ -1,6 +1,6 @@
-from members.nhatquynh1107.w1.translate import transpose
 from members.nhatquynh1107.w1.grades import summary
 from members.nhatquynh1107.w1.rules import can_register_thesis, missing
+from members.nhatquynh1107.w1.translate import transpose
 
 
 def test_transpose_square_matrix():

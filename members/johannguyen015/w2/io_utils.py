@@ -1,7 +1,8 @@
 import csv
-import json
 from datetime import date
+import json
 from pathlib import Path
+
 from members.johannguyen015.w2.models import Task
 
 
@@ -11,7 +12,7 @@ def load_tasks(path: str | Path) -> list[Task]:
 
     with file_path.open(mode="r", encoding="utf-8") as f:
         reader = csv.reader(f)
-        header = next(reader, None)
+        next(reader, None)
 
         for line_num, row in enumerate(reader, start=2):
             if not row or all(field.strip() == "" for field in row):
