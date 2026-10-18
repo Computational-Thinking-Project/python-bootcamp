@@ -26,13 +26,18 @@ def load_tasks(path: Path | str) -> list[Task]:
 
         for line_number, row in enumerate(reader, start=2):
             try:
+                if None in row:
+                    raise ValueError("Row has extra fields")
+                if any(v is None for v in row.values()):
+                    raise ValueError("Row has missing fields")
+
                 title = (row.get("title") or "").strip()
+                if not title:
+                    raise ValueError("Title cannot be empty")
+
                 importance = int(row["importance"])
                 effort_h = float(row["effort_h"])
                 deadline = date.fromisoformat(row["deadline"])
-
-                if not title:
-                    raise ValueError("Title cannot be empty")
 
                 if importance < 1 or effort_h < 0:
                     raise ValueError("Invalid importance or effort")
