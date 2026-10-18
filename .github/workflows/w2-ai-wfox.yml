@@ -1,5 +1,8 @@
 name: W2 AI-WFox
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     paths:
