@@ -1,7 +1,3 @@
-"""Task allocation module for study planner (Team T-W2)."""
-
-from __future__ import annotations
-
 from shared.contract import Block, Task
 
 
