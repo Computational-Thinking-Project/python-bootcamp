@@ -27,8 +27,7 @@ Codex drafted and verified the render tests against the team's implementation.
 Contributor: Duong Trung Anh. Tool: Codex.
 
 Trung Anh wrote `dates.py`; Codex reviewed it and explained relevant Python
-syntax. At Trung Anh's request, Codex drafted `log_stats.py` and `cli.py`
-using the existing W1/W2 code style and the personal W2 CSV loader.
+syntax.
 
 For W3-4, Codex added missing type hints and docstrings and formatted only
 `members/philip_kkk/`, preserving the existing algorithms and outputs.
