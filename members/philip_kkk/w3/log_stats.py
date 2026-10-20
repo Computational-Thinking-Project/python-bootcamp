@@ -3,6 +3,11 @@ from math import ceil
 
 
 def analyse(pairs: list[tuple[str, float]]) -> dict:
+    """Return request counts, nearest-rank p95 latencies, and the slowest route.
+
+    Empty input returns empty dictionaries and no slowest route.
+    Equal p95 values keep the first route encountered.
+    """
     if not pairs:
         return {"counts": {}, "p95": {}, "slowest": None}
 

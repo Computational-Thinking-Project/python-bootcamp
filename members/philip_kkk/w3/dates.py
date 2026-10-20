@@ -3,6 +3,7 @@ from datetime import date, datetime, timedelta
 
 
 def is_valid_date(text: str, date_format: str = "%Y-%m-%d") -> bool:
+    """Check whether text can be parsed using the supplied date format."""
     try:
         datetime.strptime(text, date_format)
         return True
@@ -10,11 +11,16 @@ def is_valid_date(text: str, date_format: str = "%Y-%m-%d") -> bool:
         return False
 
 
-def is_valid_text(text: str, pattern: str =r"^in\s+\d+\s+days$") -> bool:
+def is_valid_text(text: str, pattern: str = r"^in\s+\d+\s+days$") -> bool:
+    """Check whether text fully matches the relative-day pattern."""
     return bool(re.fullmatch(pattern, text, re.IGNORECASE))
 
 
 def parse_due(text: str, today: date) -> date:
+    """Parse an explicit date, tomorrow, relative days, or the next weekday.
+
+    Raise ValueError for unsupported input; a matching weekday means next week.
+    """
     weekdays = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6}
 
     if text == "tomorrow":

@@ -5,7 +5,8 @@ from members.thanhdat3010.w1.timetable import by_day
 from members.thanhdat3010.w1.translate import bfs
 
 
-def test_grades_summary():
+def test_grades_summary() -> None:
+    """Check score statistics for repeated and unsorted values."""
     # Test 01
     scores = [4, 4, 4]
     expected_summary = {
@@ -27,7 +28,8 @@ def test_grades_summary():
     assert summary(scores) == expected_summary
 
 
-def test_text_tools_top_k():
+def test_text_tools_top_k() -> None:
+    """Check punctuation-only input and non-positive or limited word counts."""
     # Test 01
     text = ".,!.?.,!,,?"
     assert top_k(text, 3) == []
@@ -41,7 +43,8 @@ def test_text_tools_top_k():
     assert top_k(text, 1) == expected_answers
 
 
-def test_rules_missing():
+def test_rules_missing() -> None:
+    """Check missing thesis requirements at the credit and GPA boundaries."""
     # Test 01
     credits = 119
     gpa = 2.0
@@ -55,7 +58,8 @@ def test_rules_missing():
     assert missing(credits, gpa) != expected_reasons
 
 
-def test_bfs_cycle_and_disconnected_nodes():
+def test_bfs_cycle_and_disconnected_nodes() -> None:
+    """Check BFS with cycles, disconnected nodes, and repeated edges."""
     # Test 01
     graph = {
         "A": ["B", "C"],
@@ -74,7 +78,8 @@ def test_bfs_cycle_and_disconnected_nodes():
     assert bfs(graph, "A") == ["A", "B"]
 
 
-def test_timetable_by_day():
+def test_timetable_by_day() -> None:
+    """Check sorted course groups and preservation of duplicate entries."""
     # Test 01
     timetable = [
         ("Z", "Monday"),
