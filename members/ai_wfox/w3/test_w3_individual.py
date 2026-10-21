@@ -1,19 +1,15 @@
 """Comprehensive unit tests for week 3 individual exercises."""
 
-import sys
 from datetime import date
 from pathlib import Path
 
 import pytest
 
-BOOTCAMP = Path(__file__).resolve().parents[3]
-if str(BOOTCAMP) not in sys.path:
-    sys.path.insert(0, str(BOOTCAMP))
-
 from members.ai_wfox.w3.cli import main as cli_main
 from members.ai_wfox.w3.dates import parse_due
 from members.ai_wfox.w3.log_stats import analyse
 
+BOOTCAMP = Path(__file__).resolve().parents[3]
 TODAY = date(2026, 10, 6)  # Tuesday
 
 

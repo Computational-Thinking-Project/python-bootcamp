@@ -2,6 +2,7 @@
 
 
 def summary(scores: list[float]) -> dict[str, float]:
+    """Compute descriptive statistics (min, max, mean, median) for numeric scores."""
     if not scores:
         raise ValueError("scores must not be empty")
 

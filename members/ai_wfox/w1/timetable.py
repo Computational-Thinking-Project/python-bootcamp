@@ -3,6 +3,7 @@
 
 
 def by_day(timetable: list[tuple[str, str]]) -> dict[str, list[str]]:
+    """Group and sort courses by day of the week."""
     courses_by_day: dict[str, list[str]] = {}
     for course, day in timetable:
         courses_by_day.setdefault(day, []).append(course)
