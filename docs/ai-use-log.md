@@ -21,3 +21,11 @@ drafts and supported documentation, CI, and verification.
 ## 2026-10-17 - AI-WFox - Team T-W2 render tests
 
 Codex drafted and verified the render tests against the team's implementation.
+
+## 2026-10-20 - AI-WFox - Week 3 individual exercises
+
+Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
+
+### Individual exercises (W3-1 to W3-4)
+
+Gemini generated baseline test fixtures and verified boundary logic for nearest-rank P95 and weekday offset calculations. Pham Khanh Tam reviewed, refactored, and verified all implementations locally with pytest and Ruff.
