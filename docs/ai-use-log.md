@@ -1,5 +1,15 @@
 # AI assistance log
 
+## 2026-10-23 - Thanhdat3010 - Week 3 individual exercises
+
+Codex implemented date parsing, Counter-based nearest-rank p95 analysis,
+the personal CLI reusing Dat's W2 loader, supplementary boundary tests and a
+member-specific CI job (Issue #44). Codex formatted Dat's personal files and
+added a draft Python/C++ reflection. Verification: 77 tests passed with the
+unsupported instructor BFS translation case deselected; BFS is tested
+separately. Dat's manual review and reflection are pending. No personal hours
+or human review are claimed.
+
 ## 2026-10-07 - AI-WFox - Week 1 Python bootcamp
 
 Contributor: Pham Khanh Tam. Tool: Codex.

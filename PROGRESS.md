@@ -4,6 +4,7 @@ Tracking table for 3-week Python homework. Update your row each week after submi
 
 | Member | Week | Issue | PR | Reviewer | Tests | Hours |
 |---|---|---|---|---|---|---|
+| thanhdat3010 | w3 individual | [#44](https://github.com/Computational-Thinking-Project/python-bootcamp/issues/44) | Pending: Dat opens PR | Confirm individual rotation | Local: 77 passed, 1 unsupported BFS harness case deselected; CI pending | To be entered by Dat |
 | philip_kkk | w1 | [#23](https://github.com/Computational-Thinking-Project/assistant-team04/issues/23) | [#11](https://github.com/Computational-Thinking-Project/assistant-team04/pull/11) | [Thanhdat3010](https://github.com/Thanhdat3010) | 5/5 | 4 |
 | htbaax | w1 | [#26](https://github.com/Computational-Thinking-Project/assistant-team04/issues/26) | [#36](https://github.com/Computational-Thinking-Project/assistant-team04/pull/36) | [nhatquynh1107](https://github.com/nhatquynh1107) | 5/5 | 4 |
 | thanhdat3010 | w1 | [#19](https://github.com/Computational-Thinking-Project/assistant-team04/issues/19) | [#9](https://github.com/Computational-Thinking-Project/assistant-team04/pull/9) | [philip-kkk](https://github.com/philip-kkk) | 5/5 | 4 |
