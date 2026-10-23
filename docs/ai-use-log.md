@@ -33,3 +33,11 @@ For W3-4, Codex added missing type hints and docstrings and formatted only
 `members/philip_kkk/`, preserving the existing algorithms and outputs.
 Verification uses the instructor's applicable W1/W2/W3 tests, the existing
 cross-member tests, separate DFS checks, Ruff, and manual CLI checks.
+
+## 2026-10-20 - AI-WFox - Week 3 individual exercises
+
+Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
+
+### Individual exercises (W3-1 to W3-4)
+
+Gemini generated baseline test fixtures and verified boundary logic for nearest-rank P95 and weekday offset calculations. Pham Khanh Tam reviewed, refactored, and verified all implementations locally with pytest and Ruff.

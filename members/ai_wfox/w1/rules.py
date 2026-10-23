@@ -5,10 +5,12 @@ MINIMUM_GPA = 2.0
 
 
 def can_register_thesis(credits: int, gpa: float) -> bool:
+    """Return True if credit count and GPA meet the graduation thesis criteria."""
     return credits >= MINIMUM_CREDITS and gpa >= MINIMUM_GPA
 
 
 def missing(credits: int, gpa: float) -> list[str]:
+    """Return reasons why a student cannot yet register for thesis."""
     reasons: list[str] = []
     if credits < MINIMUM_CREDITS:
         missing_credits = MINIMUM_CREDITS - credits

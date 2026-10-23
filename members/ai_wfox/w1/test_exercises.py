@@ -38,13 +38,13 @@ timetable = load("timetable")
         ([1.111, 1.119], {"min": 1.111, "max": 1.119, "mean": 1.11, "median": 1.11}),
     ],
 )
-def test_grade_summary(scores, expected):
+def test_grade_summary(scores: list[float], expected: dict[str, float]) -> None:
     original_scores = scores.copy()
     assert grades.summary(scores) == expected
     assert scores == original_scores
 
 
-def test_empty_grades():
+def test_empty_grades() -> None:
     with pytest.raises(ValueError):
         grades.summary([])
 
@@ -63,7 +63,7 @@ def test_empty_grades():
         ("Don't re-enter don't", {"don't": 2, "re-enter": 1}),
     ],
 )
-def test_word_count(text, expected):
+def test_word_count(text: str, expected: dict[str, int]) -> None:
     assert text_tools.word_count(text) == expected
 
 
@@ -78,7 +78,7 @@ def test_word_count(text, expected):
         ("", 2, []),
     ],
 )
-def test_top_k(text, k, expected):
+def test_top_k(text: str, k: int, expected: list[tuple[str, int]]) -> None:
     assert text_tools.top_k(text, k) == expected
 
 
@@ -92,12 +92,12 @@ def test_top_k(text, k, expected):
         (0, 0, False),
     ],
 )
-def test_thesis_thresholds(credits, gpa, eligible):
+def test_thesis_thresholds(credits: int, gpa: float, eligible: bool) -> None:
     assert rules.can_register_thesis(credits, gpa) is eligible
     assert bool(rules.missing(credits, gpa)) is not eligible
 
 
-def test_missing_reasons():
+def test_missing_reasons() -> None:
     assert rules.missing(118, 2.0) == ["need 2 more credits"]
     assert rules.missing(119, 2.0) == ["need 1 more credit"]
     assert rules.missing(120, 1.9) == ["need GPA of at least 2.0"]
@@ -111,13 +111,13 @@ def test_missing_reasons():
     "values, key, expected",
     [([], 5, -1), ([5], 5, 0), ([5], 4, -1), ([1, 2, 2, 2, 3], 2, 2)],
 )
-def test_binary_search_examples(values, key, expected):
+def test_binary_search_examples(values: list[int], key: int, expected: int) -> None:
     original_values = values.copy()
     assert translate.binary_search(values, key) == expected
     assert values == original_values
 
 
-def test_binary_search_against_linear_membership():
+def test_binary_search_against_linear_membership() -> None:
     for length in range(65):
         values = list(range(-length, length, 2))
         original_values = values.copy()
@@ -139,7 +139,9 @@ def test_binary_search_against_linear_membership():
         ([("B", "Fri"), ("A", "Fri"), ("A", "Fri")], {"Fri": ["A", "A", "B"]}),
     ],
 )
-def test_timetable(entries, expected):
+def test_timetable(
+    entries: list[tuple[str, str]], expected: dict[str, list[str]]
+) -> None:
     original_entries = entries.copy()
     assert timetable.by_day(entries) == expected
     assert entries == original_entries

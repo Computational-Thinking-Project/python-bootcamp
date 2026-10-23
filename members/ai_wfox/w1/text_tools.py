@@ -6,6 +6,7 @@ WORD_SEPARATORS = str.maketrans(dict.fromkeys(".,!?;:", " "))
 
 
 def word_count(text: str) -> dict[str, int]:
+    """Count case-insensitive word frequencies in the given text."""
     counts: dict[str, int] = {}
     for word in text.lower().translate(WORD_SEPARATORS).split():
         counts[word] = counts.get(word, 0) + 1
@@ -13,6 +14,7 @@ def word_count(text: str) -> dict[str, int]:
 
 
 def top_k(text: str, k: int) -> list[tuple[str, int]]:
+    """Return top k most frequent words ordered by count (descending) and word (ascending)."""
     if k <= 0:
         return []
     ranked_words = sorted(
