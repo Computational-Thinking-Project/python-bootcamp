@@ -22,6 +22,18 @@ drafts and supported documentation, CI, and verification.
 
 Codex drafted and verified the render tests against the team's implementation.
 
+## 2026-10-20 - philip-kkk - Week 3 individual exercises
+
+Contributor: Duong Trung Anh. Tool: Codex.
+
+Trung Anh wrote `dates.py`; Codex reviewed it and explained relevant Python
+syntax.
+
+For W3-4, Codex added missing type hints and docstrings and formatted only
+`members/philip_kkk/`, preserving the existing algorithms and outputs.
+Verification uses the instructor's applicable W1/W2/W3 tests, the existing
+cross-member tests, separate DFS checks, Ruff, and manual CLI checks.
+
 ## 2026-10-20 - AI-WFox - Week 3 individual exercises
 
 Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
