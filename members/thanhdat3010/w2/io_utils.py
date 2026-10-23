@@ -65,4 +65,6 @@ def save_json(tasks: list[Task], path: Path | str) -> None:
         }
         for t in tasks
     ]
-    out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    out_path.write_text(
+        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
