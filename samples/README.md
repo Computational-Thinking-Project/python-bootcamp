@@ -19,7 +19,8 @@ Each valid CSV file must follow the standard comma-separated format with a heade
 
 | Filename | Tasks Count | Total Effort (h) | Primary Target / Purpose | Expected CLI Behavior |
 |---|:---:|:---:|---|---|
-| [`tasks.csv`](tasks.csv) | 7 | 21.0 h | Happy path execution, standard demo, E2E tests | Success (`returncode == 0`), generates plan |
+| [`tasks.csv`](tasks.csv) | 2 | 7.5 h | Standard textbook reference dataset; instructor W2 test compatibility | Success (`returncode == 0`), allocates Assignment & DS exam |
+| [`tasks_expanded.csv`](tasks_expanded.csv) | 7 | 21.0 h | Extended dataset with 7 realistic student tasks for comprehensive CLI testing | Success (`returncode == 0`), full priority scheduling |
 | [`tasks_empty.csv`](tasks_empty.csv) | 0 | 0.0 h | Empty input validation | Error (`returncode == 1`), "Empty tasks file" |
 | [`tasks_infeasible.csv`](tasks_infeasible.csv) | 3 | 250.0 h | Extreme workload checking | Error (`returncode == 1`), `InfeasiblePlan` |
 | [`tasks_corrupted.csv`](tasks_corrupted.csv) | 2 | N/A | Malformed headers and invalid types | Parsing error (`returncode == 2`), usage error |
@@ -29,31 +30,35 @@ Each valid CSV file must follow the standard comma-separated format with a heade
 
 ## Usage Examples
 
-### 1. Happy Path Planning
+### 1. Standard Reference Planning
 Allocate 2 study hours on date `2026-10-26`:
 ```bash
 python -m shared.study_planner samples/tasks.csv --hours 2 --today 2026-10-26
 ```
 Expected output:
 ```text
-Tonight (2.0 h):
-  1. Assignment ...... 1.5 h
-  2. DS exam ......... 0.5 h
+1. Assignment - 1.5 h
+2. DS exam - 0.5 h
 ```
 
-### 2. Empty File Error
+### 2. Extended Multi-Task Planning
+```bash
+python -m shared.study_planner samples/tasks_expanded.csv --hours 4 --today 2026-10-26
+```
+
+### 3. Empty File Error
 ```bash
 python -m shared.study_planner samples/tasks_empty.csv --hours 2
 # Exit code: 1, stderr describes empty file
 ```
 
-### 3. Infeasible Plan Detection
+### 4. Infeasible Plan Detection
 ```bash
 python -m shared.study_planner samples/tasks_infeasible.csv --hours 2
 # Exit code: 1, stderr indicates InfeasiblePlan
 ```
 
-### 4. Malformed / Corrupted CSV Handling
+### 5. Malformed / Corrupted CSV Handling
 ```bash
 python -m shared.study_planner samples/tasks_corrupted.csv --hours 2
 # Exit code: 2, parsing failure report
