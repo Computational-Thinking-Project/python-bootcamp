@@ -10,9 +10,10 @@ BOOTCAMP = Path(__file__).resolve().parents[3]
 if str(BOOTCAMP) not in sys.path:
     sys.path.insert(0, str(BOOTCAMP))
 
-from members.johannguyen015.w3.cli import main as cli_main
-from members.johannguyen015.w3.dates import parse_due
-from members.johannguyen015.w3.log_stats import analyse
+# These imports follow the deliberate sys.path bootstrap above.
+from members.johannguyen015.w3.cli import main as cli_main  # noqa: E402
+from members.johannguyen015.w3.dates import parse_due  # noqa: E402
+from members.johannguyen015.w3.log_stats import analyse  # noqa: E402
 
 TODAY = date(2026, 10, 6)  # Tuesday
 
