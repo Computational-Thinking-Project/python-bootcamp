@@ -41,3 +41,11 @@ Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
 ### Individual exercises (W3-1 to W3-4)
 
 Gemini generated baseline test fixtures and verified boundary logic for nearest-rank P95 and weekday offset calculations. Pham Khanh Tam reviewed, refactored, and verified all implementations locally with pytest and Ruff.
+
+## 2026-10-23 - benalexx007 - Week 3 individual exercises
+
+Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
+
+### Individual exercises (W3-1 to W3-4)
+
+Gemini assisted in drafting module skeletons, verifying nearest-rank P95 formulas, and implementing comprehensive edge-case unit tests. Nguyen Dinh Hung verified all implementations against the instructor's test suite (`tests/test_w3.py`), ran Ruff linting and formatting, and authored the Python vs C++ reflection.
