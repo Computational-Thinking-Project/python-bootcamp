@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 import sys
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from members.benalexx007.w2.io_utils import load_tasks
@@ -51,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
             sys.stderr.write(f"Error: Invalid date format for --today: {args.today}\n")
             return 1
     else:
-        today = datetime.now(timezone.utc).date()
+        today = datetime.now(UTC).date()
 
     if args.hours < 0:
         sys.stderr.write("Error: hours must be non-negative\n")
