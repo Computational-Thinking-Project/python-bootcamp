@@ -1,3 +1,5 @@
+"""Load tasks from CSV and save them as JSON."""
+
 import csv
 import json
 from datetime import date
@@ -7,7 +9,11 @@ from .models import Task
 
 
 def load_tasks(path: str | Path) -> list[Task]:
-    tasks = []
+    """Read task rows, raising ValueError with the line number for invalid data.
+
+    A missing file raises FileNotFoundError. Deadlines must use ISO dates.
+    """
+    tasks: list[Task] = []
 
     with open(path, encoding="utf-8-sig", newline="") as file:
         reader = csv.DictReader(file)
@@ -20,8 +26,11 @@ def load_tasks(path: str | Path) -> list[Task]:
                     raise ValueError()
 
                 task = Task(
-                    title=row["title"], importance=int(row["importance"]), effort_h=float(row["effort_h"]), deadline=date.fromisoformat(row["deadline"])
-                    )
+                    title=row["title"],
+                    importance=int(row["importance"]),
+                    effort_h=float(row["effort_h"]),
+                    deadline=date.fromisoformat(row["deadline"]),
+                )
                 tasks.append(task)
 
             except (ValueError, TypeError, KeyError) as error:
@@ -33,12 +42,18 @@ def load_tasks(path: str | Path) -> list[Task]:
 
 
 def save_json(tasks: list[Task], path: str | Path) -> None:
-    data = []
+    """Write tasks to UTF-8 JSON, serializing deadlines as ISO date strings."""
+    data: list[dict[str, str | int | float]] = []
 
     for task in tasks:
-        data.append({
-            "title": task.title, "importance": task.importance, "effort_h": task.effort_h, "deadline": task.deadline.isoformat()
-            })
+        data.append(
+            {
+                "title": task.title,
+                "importance": task.importance,
+                "effort_h": task.effort_h,
+                "deadline": task.deadline.isoformat(),
+            }
+        )
 
     with open(path, "w", encoding="utf-8") as file:
         json.dump(data, file, indent=2, ensure_ascii=False)

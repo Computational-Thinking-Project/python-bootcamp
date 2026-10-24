@@ -41,3 +41,13 @@ Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
 ### Individual exercises (W3-1 to W3-4)
 
 Gemini generated baseline test fixtures and verified boundary logic for nearest-rank P95 and weekday offset calculations. Pham Khanh Tam reviewed, refactored, and verified all implementations locally with pytest and Ruff.
+
+## 2026-10-23 - nhatquynh1107 - Week 3 clean code
+
+Tool: Codex.
+
+Codex reviewed the contributor's existing W3-1 to W3-3 implementations against
+the instructor tests and additional date, percentile and CLI edge cases.
+For W3-4, Codex added type hints, docstrings and formatting to the contributor's
+W1-W3 files and introduced a TypedDict for log analysis results. Existing
+exercise algorithms were retained.
