@@ -8,7 +8,7 @@ from pathlib import Path
 from shared.study_planner.allocate import allocate
 from shared.study_planner.parse import parse_csv
 from shared.study_planner.prioritise import prioritise
-from shared.study_planner.render import render
+from shared.study_planner.render import render, render_summary
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -28,6 +28,12 @@ def main(argv: list[str] | None = None) -> int:
         help="Reference date for prioritisation (YYYY-MM-DD, defaults to today)",
     )
 
+    parser.add_argument(
+        "--output", "-o", type=Path, help="Write the plan to a UTF-8 file"
+    )
+    parser.add_argument(
+        "--verbose", "-v", action="store_true", help="Show allocation statistics"
+    )
     args = parser.parse_args(argv)
 
     today = date.fromisoformat(args.today) if args.today else date.today()
@@ -35,7 +41,23 @@ def main(argv: list[str] | None = None) -> int:
     prioritised = prioritise(tasks, today=today)
     blocks = allocate(prioritised, hours=args.hours)
     output = render(blocks)
-    if output:
+    summary = ""
+    if args.verbose:
+        remaining = max(0.0, args.hours - sum(block.hours for block in blocks))
+        summary = render_summary(blocks, args.hours, remaining)
+        output = "\n\n".join(part for part in (output, summary) if part)
+    if args.output:
+        if args.output.resolve() == Path(args.csv_file).resolve():
+            print("Error: Output file must differ from the tasks CSV", file=sys.stderr)
+            return 1
+        try:
+            args.output.write_text(output + "\n", encoding="utf-8")
+        except OSError as exc:
+            print(f"Error: Cannot write output file: {exc}", file=sys.stderr)
+            return 1
+        if summary:
+            print(summary)
+    elif output:
         print(output)
 
     return 0
