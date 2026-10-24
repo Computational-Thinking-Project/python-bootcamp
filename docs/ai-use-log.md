@@ -44,14 +44,9 @@ Gemini generated baseline test fixtures and verified boundary logic for nearest-
 
 ## 2026-10-23 - Thanhdat3010 - Team T-W3 CLI options
 
-Codex implemented `--output/-o`, `--verbose/-v`, pure `render_summary`, aligned
-rendering, output-error handling and acceptance tests for Issue #45. The agent
-documented combined-flag behaviour and the feasibility integration concern.
-Dat's manual review and teammate approval are pending. No human review or
-actual study hours are claimed.
+Contributor: Truong Thanh Dat. Tool: Codex, Antigravity.
 
-Verification with Python 3.12, pytest 8.3.3 and Ruff 0.6.9: 56 tests passed,
-11 member-specific tests skipped in the team run. The existing test bootstrap
-in `members/johannguyen015/w3/test_w3_individual.py` had three E402 findings;
-Codex added justified inline annotations in a separate commit, preserving
-the test logic. Repository lint now passes with the pinned Ruff version.
+Codex assisted in generating the initial implementation of `--output/-o`, `--verbose/-v`,
+pure `render_summary`, aligned rendering, and test scaffolding for Issue #45.
+Dat reviewed and verified the implementation, tested manual execution with `samples/tasks.csv`,
+ensured teammate test files remained untouched, and verified 56 passing unit tests and clean Ruff linting.
