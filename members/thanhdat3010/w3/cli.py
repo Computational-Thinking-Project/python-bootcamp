@@ -3,7 +3,7 @@
 import argparse
 import math
 import sys
-from datetime import UTC, date, datetime
+from datetime import date, datetime
 from pathlib import Path
 
 from members.thanhdat3010.w2.io_utils import load_tasks
@@ -40,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Error: {exc}", file=sys.stderr)
         return 1
     tasks = [Task(t.title, t.importance, t.effort_h, t.deadline) for t in loaded]
-    today = args.today or datetime.now(UTC).date()
+    today = args.today or datetime.now().astimezone().date()
     blocks = allocate(prioritise(tasks, today), args.hours)
     print(f"Tonight ({args.hours:.1f} h):")
     if blocks:

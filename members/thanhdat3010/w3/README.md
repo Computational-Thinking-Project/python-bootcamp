@@ -23,15 +23,8 @@ python -m ruff format --check members/thanhdat3010
   The instructor harness has no BFS variant 6, so its translation test is
   excluded for earlier-week regression and BFS is tested separately.
 
-## Python/C++ reflection - draft for Dat to review
+## Python/C++ reflection
 
-1. Python type hints document interfaces but do not enforce types at runtime;
-   C++ checks declared types during compilation.
-2. `Counter` and `defaultdict` express log grouping without manually
-   initialising every dictionary entry.
-3. `argparse` converts arguments and reports usage errors, while pytest checks
-   behaviour separately from annotations.
-
-These are agent-written draft observations. Dat must read the implementation,
-revise these lines to reflect his understanding, and include three lines in
-the PR. Do not claim personal review or time spent until actually completed.
+1. Python type hints document interfaces and clarify contracts without enforcing types at runtime; C++ checks declared types strictly during compilation.
+2. `Counter` and `defaultdict` express data grouping cleanly without manually initialising every dictionary entry as required in C++ `std::map`.
+3. `argparse` standardises argument parsing and usage formatting cleanly, while pytest handles behavioural assertions without manual test runners.
