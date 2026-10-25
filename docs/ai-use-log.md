@@ -106,3 +106,11 @@ Contributor: Ha Tran Boi Anh. Tool: Codex.
 ### Team exercise (T-W3)
 
 Codex assisted in generating test case scaffolding for CLI error handling and boundary conditions in `tests/test_e2e_errors.py`. Ha Tran Boi Anh reviewed the implementation, verified both subprocess and direct `main()` execution with sample edge-case datasets, ensured clean test scope, and confirmed 19 passing tests with clean Ruff linting.
+
+## 2026-10-25 - AI-WFox - Team T-W3 CLI Documentation & User Guide
+
+Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
+
+### Team exercise (T-W3)
+
+Gemini assisted in structuring and drafting the comprehensive Study Planner CLI User Guide (`docs/study_planner_cli.md`), detailing the sequential execution pipeline, command syntax, arguments, options, sample dataset mapping, programmatic usage, and the strict exit code / error handling contract. Pham Khanh Tam reviewed the documentation against the integrated CLI implementation, updated `README.md` to reference the guide, and verified local test suite execution (`pytest -q tests/`) and Ruff linting.

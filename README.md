@@ -181,3 +181,36 @@ Week 1 is complete when all **seven** individual W1 PRs are merged with review
 approval, bootcamp CI passes the required tests, all seven progress rows are
 accurate, and the project manager publishes the `py-w1-done` tag. A README-only
 PR or passing local tests alone does not meet those completion criteria.
+
+## Study Planner Application (Team T-W2 & T-W3)
+
+In Weeks 2 and 3, Team 04 incrementally built the **Study Planner**, a unified tool to schedule and allocate study hours for academic tasks:
+
+- **Team T-W2 (Core Modules):** Defined the shared `Task` and `Block` contracts, CSV parser (`parse.py`), task prioritisation (`prioritise.py`), greedy allocation (`allocate.py`), and formatted plan rendering (`render.py`).
+- **Team T-W3 (CLI Application):** Built the unified CLI interface (`__main__.py`), comprehensive sample datasets (`samples/`), full-plan feasibility checks (`errors.py`), `--output` file export, `--verbose` statistics, and end-to-end automated test suites.
+
+### Running the Study Planner CLI
+
+Run the tool as an executable Python module from the repository root:
+
+```bash
+# Standard run (stdout)
+python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26
+
+# Verbose summary with statistics
+python -m shared.study_planner samples/tasks.csv --hours 8 -v
+
+# Export rendered schedule to a UTF-8 file
+python -m shared.study_planner samples/tasks.csv --hours 8 -o schedule.txt
+```
+
+For complete CLI options, exit code specifications, error handling contracts, and dataset descriptions, see the [Study Planner CLI User Guide](docs/study_planner_cli.md).
+
+### Running the Test Suite
+
+Run all instructor tests, module tests, and end-to-end integration tests:
+
+```bash
+python -m pytest -q tests/
+python -m ruff check .
+```
