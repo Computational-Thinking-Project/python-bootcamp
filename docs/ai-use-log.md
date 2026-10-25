@@ -49,3 +49,12 @@ Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
 ### Individual exercises (W3-1 to W3-4)
 
 Gemini assisted in drafting module skeletons, verifying nearest-rank P95 formulas, and implementing comprehensive edge-case unit tests. Nguyen Dinh Hung verified all implementations against the instructor's test suite (`tests/test_w3.py`), ran Ruff linting and formatting, and authored the Python vs C++ reflection.
+
+## 2026-10-25 - htbaax - Week 3 individual exercises
+
+Contributor: Ha Tran Boi Anh. Tool: Antigravity (Gemini).
+
+### Individual exercises (W3-1 to W3-4)
+
+Gemini assisted in scaffolding module structures, verifying relative date parsing and nearest-rank P95 calculations, and writing comprehensive edge-case unit tests. Ha Tran Boi Anh reviewed and verified all implementations against instructor tests (`tests/test_w3.py`), added type hints and docstrings across W1-W3 modules, ran Ruff checks, and authored the technical reflection comparing Python with C++.
+
