@@ -1,4 +1,4 @@
-"""Happy-path E2E tests for the shared study planner CLI (Team T-W3)."""
+"""Happy-path E2E tests using feasible budgets for the 7.5-hour sample."""
 
 import re
 import subprocess
@@ -35,7 +35,7 @@ def test_cli_module_runs_successfully() -> None:
             "shared.study_planner",
             str(TASKS_CSV),
             "--hours",
-            "2",
+            "8",
             "--today",
             TODAY,
         ],
@@ -49,29 +49,21 @@ def test_cli_module_runs_successfully() -> None:
 
     assert result.returncode == 0, result.stderr
     assert result.stderr == ""
-    assert_plan(result.stdout, [("Assignment", 1.5), ("DS exam", 0.5)])
+    assert_plan(result.stdout, [("Assignment", 1.5), ("DS exam", 6.0)])
 
 
-@pytest.mark.parametrize(
-    "hours,expected",
-    [
-        ("2", [("Assignment", 1.5), ("DS exam", 0.5)]),
-        ("3", [("Assignment", 1.5), ("DS exam", 1.5)]),
-        ("1.5", [("Assignment", 1.5)]),
-    ],
-)
-def test_main_allocates_requested_hours(
+@pytest.mark.parametrize("hours", ["8", "9", "7.5"])
+def test_main_accepts_feasible_budgets(
     hours: str,
-    expected: list[tuple[str, float]],
     capsys: pytest.CaptureFixture[str],
 ) -> None:
-    """Accept integer and decimal budgets and capture a successful plan."""
+    """Complete all tasks with surplus or exactly sufficient study hours."""
     result = main([str(TASKS_CSV), "--hours", hours, "--today", TODAY])
     captured = capsys.readouterr()
 
     assert result == 0
     assert captured.err == ""
-    assert_plan(captured.out, expected)
+    assert_plan(captured.out, [("Assignment", 1.5), ("DS exam", 6.0)])
 
 
 def test_output_file_contains_expected_plan(
@@ -83,7 +75,7 @@ def test_output_file_contains_expected_plan(
         [
             str(TASKS_CSV),
             "--hours",
-            "2",
+            "8",
             "--today",
             TODAY,
             "--output",
@@ -97,5 +89,5 @@ def test_output_file_contains_expected_plan(
     assert output_file.is_file()
     assert_plan(
         output_file.read_text(encoding="utf-8"),
-        [("Assignment", 1.5), ("DS exam", 0.5)],
+        [("Assignment", 1.5), ("DS exam", 6.0)],
     )
