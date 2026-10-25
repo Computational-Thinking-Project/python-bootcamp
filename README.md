@@ -198,10 +198,10 @@ Run the tool as an executable Python module from the repository root:
 python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26
 
 # Verbose summary with statistics
-python -m shared.study_planner samples/tasks.csv --hours 8 -v
+python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26 -v
 
 # Export rendered schedule to a UTF-8 file
-python -m shared.study_planner samples/tasks.csv --hours 8 -o schedule.txt
+python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26 -o schedule.txt
 ```
 
 For complete CLI options, exit code specifications, error handling contracts, and dataset descriptions, see the [Study Planner CLI User Guide](docs/study_planner_cli.md).

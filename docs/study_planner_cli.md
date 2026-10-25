@@ -14,19 +14,22 @@ The CLI integrates the modular components developed across Team T-W2 and Team T-
        +-----------+-----------+
                    |
                    v
-     [ parse_csv(csv_path) ]       --> Validates headers, types, finite effort
+     [ parse_csv(csv_path) ]       --> Parses headers and task fields
+                   |
+                   v
+     [ CLI finite-effort check ]   --> Validates that all effort_h are finite
                    |
                    v
   [ check_feasible(tasks, hours) ] --> Ensures sum(effort_h) <= available hours
                    |
                    v
-   [ prioritise(tasks, today) ]    --> Orders tasks by urgency, deadline, effort
+   [ prioritise(tasks, today) ]    --> Orders by importance / max(1, days_left)
                    |
                    v
     [ allocate(tasks, hours) ]     --> Greedily allocates study blocks
                    |
                    v
-        [ render(blocks) ]         --> Generates aligned schedule table
+        [ render(blocks) ]         --> Formats dot-leader schedule lines
                    |
                    +---> (Optional: render_summary if --verbose)
                    |
@@ -35,12 +38,12 @@ The CLI integrates the modular components developed across Team T-W2 and Team T-
 ```
 
 ### Component Ownership & Integration
-- **`shared/study_planner/parse.py`**: Reads CSV files, normalises header names, and instantiates immutable `Task` objects.
+- **`shared/study_planner/parse.py`**: Reads CSV files, normalises header names, and instantiates mutable `Task` objects.
 - **`shared/study_planner/errors.py`**: Defines `InfeasiblePlan` and `check_feasible()` to ensure available study hours cover the required workload.
-- **`shared/study_planner/prioritise.py`**: Ranks tasks based on remaining days until due date, task weight/priority, and effort.
-- **`shared/study_planner/allocate.py`**: Allocates study hours into `Block` segments matching available time.
-- **`shared/study_planner/render.py`**: Formats study blocks into structured text representations, and formats verbose summaries.
-- **`shared/study_planner/__main__.py`**: CLI entry point with `argparse`, input sanitation, and clean error exit code management.
+- **`shared/study_planner/prioritise.py`**: Ranks tasks in descending order of urgency score computed as `importance / max(1, days_left)` without effort-based ranking. Due and overdue tasks use 1 day; equal scores maintain input order.
+- **`shared/study_planner/allocate.py`**: Greedily allocates study hours into `Block` segments matching available time.
+- **`shared/study_planner/render.py`**: Formats study blocks into structured numbered lines with dot leaders (`1. Assignment ... 1.5 h`), and formats verbose allocation statistics.
+- **`shared/study_planner/__main__.py`**: CLI entry point with `argparse`, finite-effort validation, input sanitation, and clean error exit code management.
 
 ---
 
@@ -63,9 +66,9 @@ python -m shared.study_planner <csv_file> --hours <hours> [options]
 | Flag | Short | Type | Required | Default | Description |
 |---|---|---|---|---|---|
 | `--hours` | | `float` | **Yes** | *None* | Total study hours available. Must be a finite, positive number. |
-| `--today` | | `str` | No | System date | Reference date in ISO format (`YYYY-MM-DD`) for urgency calculation. |
+| `--today` | | `str` | No | System date | Reference date in ISO format (`YYYY-MM-DD`) for urgency calculation. Recommended for reproducible ordering. |
 | `--output` | `-o` | `Path` | No | *None* | File path to write the formatted plan (UTF-8). Must differ from `csv_file`. |
-| `--verbose`| `-v` | flag | No | `False` | Display allocation statistics and remaining unallocated budget. |
+| `--verbose`| `-v` | flag | No | `False` | Display allocation statistics (`Tasks selected`, `Available hours`, `Allocated hours`, `Remaining hours`). |
 | `--help` | `-h` | flag | No | | Print CLI argument help message and exit with code `0`. |
 
 ---
@@ -95,13 +98,13 @@ The CLI conforms to a strict exit code contract. Handled errors output clear mes
 
 Team 04 maintains standardized test datasets under `samples/` for end-to-end verification:
 
-| Dataset File | Total Effort | Purpose / Target Test Scenario |
-|---|:---:|---|
-| `samples/tasks.csv` | **7.5 h** | Default benchmark dataset with 2 core tasks (`Assignment` 1.5h, `DS exam` 6h). Feasible when `--hours >= 7.5`. |
-| `samples/tasks_expanded.csv` | **11.5 h** | Extended realistic student workload with 6 diverse tasks across varying priorities and deadlines. |
-| `samples/tasks_infeasible.csv` | **26.0 h** | Massive effort requirements and tight deadlines designed to verify `InfeasiblePlan` handling (Exit code 1). |
-| `samples/tasks_empty.csv` | **0.0 h** | 0-byte file designed to test empty dataset detection (Exit code 1). |
-| `samples/tasks_corrupted.csv` | *N/A* | Malformed headers and invalid numeric types designed to test CSV validation (Exit code 2). |
+| Dataset File | Tasks Count | Total Effort (h) | Purpose / Target Test Scenario |
+|---|:---:|:---:|---|
+| `samples/tasks.csv` | **2** | **7.5 h** | Default benchmark dataset with 2 core tasks (`Assignment` 1.5h, `DS exam` 6h). Feasible when `--hours >= 7.5`. |
+| `samples/tasks_expanded.csv` | **7** | **21.0 h** | Extended realistic student workload with 7 diverse tasks across varying priorities and deadlines. |
+| `samples/tasks_infeasible.csv` | **3** | **250.0 h** | Extreme workload checking designed to verify `InfeasiblePlan` handling (Exit code 1). |
+| `samples/tasks_empty.csv` | **0** | **0.0 h** | 0-byte file designed to test empty dataset detection (Exit code 1). |
+| `samples/tasks_corrupted.csv` | **2** | *N/A* | Malformed headers and invalid numeric types designed to test CSV validation (Exit code 2). |
 
 ---
 
@@ -117,15 +120,15 @@ python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26
 
 **Output:**
 ```text
-Assignment: 1.5h
-DS exam: 6.0h
+1. Assignment ... 1.5 h
+2. DS exam ...... 6 h
 ```
 
 ---
 
 ### 5.2. Verbose Output with Statistics
 
-Inspect task allocation breakdown and remaining study hours with `--verbose` / `-v`:
+Inspect task allocation breakdown and remaining study hours with `--verbose` / `-v` (specifying `--today` for reproducible task ordering):
 
 ```bash
 python -m shared.study_planner samples/tasks.csv --hours 9 --today 2026-10-26 -v
@@ -133,24 +136,23 @@ python -m shared.study_planner samples/tasks.csv --hours 9 --today 2026-10-26 -v
 
 **Output:**
 ```text
-Assignment: 1.5h
-DS exam: 6.0h
+1. Assignment ... 1.5 h
+2. DS exam ...... 6 h
 
-Summary:
-- Total budget: 9.0h
-- Allocated: 7.5h
-- Remaining: 1.5h
-- Tasks completed: 2/2
+Tasks selected: 2
+Available hours: 9 h
+Allocated hours: 7.5 h
+Remaining hours: 1.5 h
 ```
 
 ---
 
 ### 5.3. Saving to File (`--output`)
 
-Export the formatted plan to a UTF-8 text file:
+Export the formatted plan to a UTF-8 text file, specifying `--today` for reproducible output:
 
 ```bash
-python -m shared.study_planner samples/tasks.csv --hours 8 -o schedule.txt
+python -m shared.study_planner samples/tasks.csv --hours 8 --today 2026-10-26 -o schedule.txt
 ```
 
 When `-o` is supplied without `-v`, the CLI runs silently and writes the complete plan to `schedule.txt`. When combined with `-v`, the summary statistics are displayed on `stdout` while the full plan is preserved in the file.
@@ -161,7 +163,7 @@ When `-o` is supplied without `-v`, the CLI runs silently and writes the complet
 
 #### Insufficient Study Budget (Exit Code 1)
 ```bash
-python -m shared.study_planner samples/tasks.csv --hours 2
+python -m shared.study_planner samples/tasks.csv --hours 2 --today 2026-10-26
 ```
 *Stderr Output:*
 ```text
