@@ -16,9 +16,7 @@ class InfeasiblePlan(Exception):
         )
 
     def __str__(self) -> str:
-        return (
-            f"InfeasiblePlan: {self.needed_h} hours needed exceeds {self.available_h} hours available"
-        )
+        return f"InfeasiblePlan: {self.needed_h} hours needed exceeds {self.available_h} hours available"
 
 
 def check_feasible(tasks: Iterable[Task], available_h: float) -> None:
