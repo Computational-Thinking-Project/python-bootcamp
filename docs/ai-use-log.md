@@ -49,3 +49,15 @@ Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
 ### Individual exercises (W3-1 to W3-4)
 
 Gemini assisted in drafting module skeletons, verifying nearest-rank P95 formulas, and implementing comprehensive edge-case unit tests. Nguyen Dinh Hung verified all implementations against the instructor's test suite (`tests/test_w3.py`), ran Ruff linting and formatting, and authored the Python vs C++ reflection.
+
+## 2026-10-25 - nhatquynh1107 - Team T-W3 error handling
+
+Tool: Codex.
+
+The contributor wrote the initial shared `InfeasiblePlan` and `check_feasible`.
+Codex added docstrings and integrated validation and error handling into the
+existing CLI entry point.
+The integration follows the team's complete-plan feasibility rule: the current
+sample requires 7.5 hours, so a two-hour budget returns an infeasible-plan error.
+Verification included the existing shared module tests, temporary CLI checks
+and Ruff. No new test files are retained in this contribution.
