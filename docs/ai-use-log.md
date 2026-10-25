@@ -78,6 +78,14 @@ Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
 
 Gemini assisted in drafting module skeletons, verifying nearest-rank P95 formulas, and implementing comprehensive edge-case unit tests. Nguyen Dinh Hung verified all implementations against the instructor's test suite (`tests/test_w3.py`), ran Ruff linting and formatting, and authored the Python vs C++ reflection.
 
+## 2026-10-25 - htbaax - Week 3 individual exercises
+
+Contributor: Ha Tran Boi Anh. Tool: Codex.
+
+### Individual exercises (W3-1 to W3-4)
+
+Ha Tran Boi Anh wrote the exercise code for W3-1 to W3-3. Codex reviewed the existing W3-1 to W3-3 implementations, and added missing type hints, docstrings, and formatting for W3-4, preserving the existing algorithms and outputs. Verification was conducted using the instructor's test suite (`tests/test_w1.py`, `tests/test_w2.py`, `tests/test_w3.py`), local unit tests, and Ruff checks.
+
 ## 2026-10-25 - nhatquynh1107 - Team T-W3 error handling
 
 Tool: Codex.
