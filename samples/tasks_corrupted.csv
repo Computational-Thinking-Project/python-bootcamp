@@ -1,0 +1,3 @@
+item_name,prio,hours_required,due
+Unknown Task,HIGH,invalid_number,not-a-date
+Broken Task,,NaN,99-99-9999

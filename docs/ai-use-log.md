@@ -1,5 +1,16 @@
 # AI assistance log
 
+## 2026-10-23 - Thanhdat3010 - Week 3 individual exercises
+
+Contributor: Truong Thanh Dat. Tool: Codex, Antigravity.
+
+Codex assisted in generating the initial implementation of date parsing, Counter-based
+nearest-rank p95 analysis, and the personal CLI reusing Dat's W2 loader (Issue #44).
+Dat reviewed the implementation, fixed the local calendar date timezone logic in `cli.py`
+using `datetime.now().astimezone().date()`, refined type hints and docstrings, and finalized
+the three-line Python/C++ reflection in `README.md`.
+Verification: 77 tests passed locally, personal formatting and Ruff clean, CI passing.
+
 ## 2026-10-07 - AI-WFox - Week 1 Python bootcamp
 
 Contributor: Pham Khanh Tam. Tool: Codex.
@@ -22,6 +33,18 @@ drafts and supported documentation, CI, and verification.
 
 Codex drafted and verified the render tests against the team's implementation.
 
+## 2026-10-20 - philip-kkk - Week 3 individual exercises
+
+Contributor: Duong Trung Anh. Tool: Codex.
+
+Trung Anh wrote `dates.py`; Codex reviewed it and explained relevant Python
+syntax.
+
+For W3-4, Codex added missing type hints and docstrings and formatted only
+`members/philip_kkk/`, preserving the existing algorithms and outputs.
+Verification uses the instructor's applicable W1/W2/W3 tests, the existing
+cross-member tests, separate DFS checks, Ruff, and manual CLI checks.
+
 ## 2026-10-20 - AI-WFox - Week 3 individual exercises
 
 Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
@@ -39,3 +62,30 @@ the instructor tests and additional date, percentile and CLI edge cases.
 For W3-4, Codex added type hints, docstrings and formatting to the contributor's
 W1-W3 files and introduced a TypedDict for log analysis results. Existing
 exercise algorithms were retained.
+## 2026-10-23 - Thanhdat3010 - Team T-W3 CLI options
+
+Contributor: Truong Thanh Dat. Tool: Codex, Antigravity.
+
+Codex assisted in generating the initial implementation of `--output/-o`, `--verbose/-v`,
+pure `render_summary`, aligned rendering, and test scaffolding for Issue #45.
+Dat reviewed and verified the implementation, tested manual execution with `samples/tasks.csv`,
+ensured teammate test files remained untouched, and verified 56 passing unit tests and clean Ruff linting.
+## 2026-10-23 - benalexx007 - Week 3 individual exercises
+
+Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
+
+### Individual exercises (W3-1 to W3-4)
+
+Gemini assisted in drafting module skeletons, verifying nearest-rank P95 formulas, and implementing comprehensive edge-case unit tests. Nguyen Dinh Hung verified all implementations against the instructor's test suite (`tests/test_w3.py`), ran Ruff linting and formatting, and authored the Python vs C++ reflection.
+
+## 2026-10-25 - nhatquynh1107 - Team T-W3 error handling
+
+Tool: Codex.
+
+The contributor wrote the initial shared `InfeasiblePlan` and `check_feasible`.
+Codex added docstrings and integrated validation and error handling into the
+existing CLI entry point.
+The integration follows the team's complete-plan feasibility rule: the current
+sample requires 7.5 hours, so a two-hour budget returns an infeasible-plan error.
+Verification included the existing shared module tests, temporary CLI checks
+and Ruff. No new test files are retained in this contribution.

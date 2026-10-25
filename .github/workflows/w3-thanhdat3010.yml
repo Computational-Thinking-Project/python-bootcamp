@@ -1,0 +1,34 @@
+name: W3 Thanhdat3010
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths:
+      - "members/thanhdat3010/**"
+      - "shared/**"
+      - "samples/**"
+      - "tests/**"
+      - ".github/workflows/w3-thanhdat3010.yml"
+  push:
+    branches: [main]
+    paths:
+      - "members/thanhdat3010/**"
+      - "shared/**"
+      - "samples/**"
+      - "tests/**"
+      - ".github/workflows/w3-thanhdat3010.yml"
+
+jobs:
+  individual-w3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest ruff
+      - run: python -m ruff check members/thanhdat3010
+      - run: python -m ruff format --check members/thanhdat3010
+      - run: python -m pytest -q tests/test_w3.py members/thanhdat3010/w3/test_w3_individual.py --member thanhdat3010
