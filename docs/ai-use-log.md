@@ -97,3 +97,12 @@ The integration follows the team's complete-plan feasibility rule: the current
 sample requires 7.5 hours, so a two-hour budget returns an infeasible-plan error.
 Verification included the existing shared module tests, temporary CLI checks
 and Ruff. No new test files are retained in this contribution.
+
+
+## 2026-10-25 - htbaax - Team T-W3 E2E error tests
+
+Contributor: Ha Tran Boi Anh. Tool: Codex.
+
+### Team exercise (T-W3)
+
+Codex assisted in generating test case scaffolding for CLI error handling and boundary conditions in `tests/test_e2e_errors.py`. Ha Tran Boi Anh reviewed the implementation, verified both subprocess and direct `main()` execution with sample edge-case datasets, ensured clean test scope, and confirmed 19 passing tests with clean Ruff linting.
