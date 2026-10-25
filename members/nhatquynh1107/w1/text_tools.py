@@ -1,14 +1,18 @@
+"""Count words and select the most frequent words in text."""
+
+
 def word_count(text: str) -> dict[str, int]:
+    """Count lowercase words, treating the punctuation '.,!?;:' as separators."""
     text = text.lower()
 
     if not text:
         return {}
-    
+
     for punctuation in ".,!?;:":
         text = text.replace(punctuation, " ")
 
     words = text.split()
-    wordCounts = {}
+    wordCounts: dict[str, int] = {}
 
     for word in words:
         if word in wordCounts:
@@ -20,6 +24,10 @@ def word_count(text: str) -> dict[str, int]:
 
 
 def top_k(text: str, k: int) -> list[tuple[str, int]]:
+    """Return up to k words by descending count, breaking ties alphabetically.
+
+    Empty text or a non-positive k returns an empty list.
+    """
     wordCounts = word_count(text)
 
     if not text or k <= 0:
