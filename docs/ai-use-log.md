@@ -65,8 +65,8 @@ and Ruff. No new test files are retained in this contribution.
 
 ## 2026-10-25 - htbaax - Team T-W3 E2E error tests
 
-Contributor: Ha Tran Boi Anh. Tool: Antigravity (Gemini).
+Contributor: Ha Tran Boi Anh. Tool: Codex.
 
 ### Team exercise (T-W3)
 
-Gemini assisted in structuring comprehensive end-to-end test cases in `tests/test_e2e_errors.py` covering non-existent files, empty files, malformed CSV inputs, infeasible task plans, non-positive and non-numeric hours, invalid date formats, and verifying absence of Python tracebacks across both subprocess execution and direct `main()` calls with `capsys`. Ha Tran Boi Anh reviewed, verified execution with pytest, and ensured clean Ruff checks.
+Codex assisted in generating test case scaffolding for CLI error handling and boundary conditions in `tests/test_e2e_errors.py`. Ha Tran Boi Anh reviewed the implementation, verified both subprocess and direct `main()` execution with sample edge-case datasets, ensured clean test scope, and confirmed 19 passing tests with clean Ruff linting.
