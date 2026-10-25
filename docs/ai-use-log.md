@@ -61,3 +61,12 @@ The integration follows the team's complete-plan feasibility rule: the current
 sample requires 7.5 hours, so a two-hour budget returns an infeasible-plan error.
 Verification included the existing shared module tests, temporary CLI checks
 and Ruff. No new test files are retained in this contribution.
+
+
+## 2026-10-25 - htbaax - Team T-W3 E2E error tests
+
+Contributor: Ha Tran Boi Anh. Tool: Antigravity (Gemini).
+
+### Team exercise (T-W3)
+
+Gemini assisted in structuring comprehensive end-to-end test cases in `tests/test_e2e_errors.py` covering non-existent files, empty files, malformed CSV inputs, infeasible task plans, non-positive and non-numeric hours, invalid date formats, and verifying absence of Python tracebacks across both subprocess execution and direct `main()` calls with `capsys`. Ha Tran Boi Anh reviewed, verified execution with pytest, and ensured clean Ruff checks.
