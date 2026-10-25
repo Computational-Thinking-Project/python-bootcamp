@@ -53,6 +53,14 @@ Contributor: Pham Khanh Tam. Tool: Antigravity (Gemini).
 
 Gemini generated baseline test fixtures and verified boundary logic for nearest-rank P95 and weekday offset calculations. Pham Khanh Tam reviewed, refactored, and verified all implementations locally with pytest and Ruff.
 
+## 2026-10-23 - Thanhdat3010 - Team T-W3 CLI options
+
+Contributor: Truong Thanh Dat. Tool: Codex, Antigravity.
+
+Codex assisted in generating the initial implementation of `--output/-o`, `--verbose/-v`,
+pure `render_summary`, aligned rendering, and test scaffolding for Issue #45.
+Dat reviewed and verified the implementation, tested manual execution with `samples/tasks.csv`,
+ensured teammate test files remained untouched, and verified 56 passing unit tests and clean Ruff linting.
 ## 2026-10-23 - benalexx007 - Week 3 individual exercises
 
 Contributor: Nguyen Dinh Hung. Tool: Antigravity (Gemini).
